@@ -1,3 +1,23 @@
+buildscript {
+	ext {
+		//Java
+		javaVersion = '21'
+
+		//Spring
+		springBootVersion = '3.2.2'
+
+		//Apache
+		apacheCommonsLangVersion = '3.14.0'
+
+		//Lombok
+		lombokVersion = '1.18.30'
+
+		//Test
+		jUnit5Version = '5.10.1'
+		assertJVersion = '3.24.2'
+	}
+}
+
 plugins {
 	id 'java'
 	id 'org.springframework.boot' version '3.2.2'
@@ -8,7 +28,7 @@ group = 'com.damianurbaniak'
 version = '0.0.1-SNAPSHOT'
 
 java {
-	sourceCompatibility = '21'
+	sourceCompatibility = javaVersion
 }
 
 configurations {
@@ -22,10 +42,22 @@ repositories {
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	compileOnly 'org.projectlombok:lombok'
-	annotationProcessor 'org.projectlombok:lombok'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	//Spring
+	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: springBootVersion
+
+	//Apache
+	implementation group: "org.apache.commons", name: "commons-lang3", version: apacheCommonsLangVersion
+
+	annotationProcessor group: 'org.projectlombok', name: 'lombok', version: lombokVersion
+	compileOnly group: 'org.projectlombok', name: 'lombok', version: lombokVersion
+	testAnnotationProcessor group: 'org.projectlombok', name: 'lombok', version: lombokVersion
+	testCompileOnly group: 'org.projectlombok', name: 'lombok', version: lombokVersion
+
+	//Test
+	testImplementation group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: springBootVersion
+	testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter', version: jUnit5Version
+	testImplementation group: 'org.assertj', name: 'assertj-core', version: assertJVersion
+	testImplementation group: 'org.instancio', name: 'instancio-junit', version: '4.2.0'
 }
 
 tasks.named('test') {
