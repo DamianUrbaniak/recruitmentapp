@@ -6,9 +6,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public record RepoData(String name,
                        Owner owner,
                        boolean fork) {
+
   @JsonIgnoreProperties(ignoreUnknown = true)
-  record Owner(String login) {
+  public record Owner(String login) {
   }
 }
-
-

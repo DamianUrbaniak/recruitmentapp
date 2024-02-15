@@ -1,9 +1,10 @@
 package com.damianurbaniak.recruitmentapp.repodataprovider;
 
-import org.springframework.http.ResponseEntity;
+import com.damianurbaniak.recruitmentapp.repodataprovider.dto.RepoDto;
+
+import java.util.List;
 
 public interface RepoDataProviderFacade {
 
-  ResponseEntity<String> elo(final String userName, final String acceptHeader);
-
-  }
+  List<RepoDto> fetchRepoData(final String userName, final String acceptHeader);
+}

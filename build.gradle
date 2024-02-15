@@ -1,65 +1,56 @@
 buildscript {
-	ext {
-		//Java
-		javaVersion = '21'
+    ext {
+        //Java
+        javaVersion = '21'
 
-		//Spring
-		springBootVersion = '3.2.2'
+        //Spring
+        springBootVersion = '3.2.2'
 
-		//Apache
-		apacheCommonsLangVersion = '3.14.0'
+        //Apache
+        apacheCommonsLangVersion = '3.14.0'
 
-		//Lombok
-		lombokVersion = '1.18.30'
-
-		//Test
-		jUnit5Version = '5.10.1'
-		assertJVersion = '3.24.2'
-	}
+        //Lombok
+        lombokVersion = '1.18.30'
+    }
 }
 
 plugins {
-	id 'java'
-	id 'org.springframework.boot' version '3.2.2'
-	id 'io.spring.dependency-management' version '1.1.4'
+    id 'java'
+    id 'org.springframework.boot' version '3.2.2'
+    id 'io.spring.dependency-management' version '1.1.4'
 }
 
 group = 'com.damianurbaniak'
 version = '0.0.1-SNAPSHOT'
 
 java {
-	sourceCompatibility = javaVersion
+    sourceCompatibility = javaVersion
 }
 
 configurations {
-	compileOnly {
-		extendsFrom annotationProcessor
-	}
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
 }
 
 repositories {
-	mavenCentral()
+    mavenCentral()
 }
 
 dependencies {
-	//Spring
-	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: springBootVersion
+    //Spring
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: springBootVersion
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-webflux', version: springBootVersion
 
-	//Apache
-	implementation group: "org.apache.commons", name: "commons-lang3", version: apacheCommonsLangVersion
+    //Apache
+    implementation group: "org.apache.commons", name: "commons-lang3", version: apacheCommonsLangVersion
 
-	annotationProcessor group: 'org.projectlombok', name: 'lombok', version: lombokVersion
-	compileOnly group: 'org.projectlombok', name: 'lombok', version: lombokVersion
-	testAnnotationProcessor group: 'org.projectlombok', name: 'lombok', version: lombokVersion
-	testCompileOnly group: 'org.projectlombok', name: 'lombok', version: lombokVersion
-
-	//Test
-	testImplementation group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: springBootVersion
-	testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter', version: jUnit5Version
-	testImplementation group: 'org.assertj', name: 'assertj-core', version: assertJVersion
-	testImplementation group: 'org.instancio', name: 'instancio-junit', version: '4.2.0'
+    annotationProcessor group: 'org.projectlombok', name: 'lombok', version: lombokVersion
+    compileOnly group: 'org.projectlombok', name: 'lombok', version: lombokVersion
+    testAnnotationProcessor group: 'org.projectlombok', name: 'lombok', version: lombokVersion
+    testCompileOnly group: 'org.projectlombok', name: 'lombok', version: lombokVersion
 }
 
 tasks.named('test') {
-	useJUnitPlatform()
+    useJUnitPlatform()
 }
