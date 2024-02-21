@@ -9,5 +9,4 @@ class RecruitmentApiApplicationTests {
 	@Test
 	void contextLoads() {
 	}
-
 }
